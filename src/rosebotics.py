@@ -1,3 +1,5 @@
+
+
 """
   Capstone Project.  This module contains high-level code that should be useful
   for a variety of applications of the robot.  Augment as appropriate.
@@ -174,7 +176,7 @@ class DriveSystem(object):
 
 
 class TouchSensor(low_level_rb.TouchSensor):
-    """ Primary author of this class:  PUT_YOUR_NAME_HERE. """
+    """ Primary author of this class:  Elijah Williams. """
 
     def __init__(self, port=ev3.INPUT_1):
         super().__init__(port)
