@@ -204,7 +204,8 @@ class ColorSensor(low_level_rb.ColorSensor):
         light intensity is less than the given value (threshold), which should
         be between 0 (no light reflected) and 100 (maximum light reflected).
         """
-        # TODO.
+        while True:
+            if reflected_light_intensity < reflected_light_intensity:
 
     def wait_until_intensity_is_greater_than(self, reflected_light_intensity):
         """
@@ -229,7 +230,6 @@ class ColorSensor(low_level_rb.ColorSensor):
         Each item in the sequence must be a Color (as defined above).
         """
         # TODO.
-
 
 class InfraredSensorAsProximitySensor(object):
     """ Primary author of this class:  PUT_YOUR_NAME_HERE. """
