@@ -5,15 +5,21 @@
 
 import rosebotics as rb
 import time
-# 9.6in,831  9.6in,826 9.6in,823
-# 86.39 degrees per inch in one sec
 
 
 def main():
     """ Runs YOUR specific part of the project """
     # movement_experiment()
     # degree_experiment()
-    test_spin_degree()
+    # test_go_inches()
+    # test_spin_degree()
+    turn_degree_experiment()
+
+
+def test_go_inches():
+    robot = rb.Snatch3rRobot()
+
+    robot.drive_system.go_straight_inches(10)
 
 
 def movement_experiment():
@@ -23,6 +29,8 @@ def movement_experiment():
     time.sleep(1)
     robot.drive_system.stop_moving()
     print(robot.drive_system.left_wheel.get_degrees_spun())
+# 9.6in,831  9.6in,826 9.6in,823
+# 86.39 degrees per inch in one sec
 
 
 def test_spin_degree():
@@ -40,6 +48,20 @@ def degree_experiment():
     print(robot.drive_system.left_wheel.get_degrees_spun())
 # 475, 90degrees,452, 90degrees, 465, 90degrees
 # 5.18 degrees spun per degree
+
+
+# def test_turn_degrees():
+
+
+def turn_degree_experiment():
+    robot = rb.Snatch3rRobot()
+
+    robot.drive_system.start_moving(50, 0)
+    time.sleep(3.555)
+    robot.drive_system.stop_moving()
+    print(robot.drive_system.left_wheel.get_degrees_spun())
+# 989, 90 degrees    965, 90 degrees     974, 90 degrees
+# 10.84 degrees spun per degree
 
 
 main()
