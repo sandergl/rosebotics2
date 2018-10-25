@@ -12,7 +12,8 @@ import time
 def main():
     """ Runs YOUR specific part of the project """
     # movement_experiment()
-    degree_experiment()
+    # degree_experiment()
+    test_spin_degree()
 
 
 def movement_experiment():
@@ -22,6 +23,12 @@ def movement_experiment():
     time.sleep(1)
     robot.drive_system.stop_moving()
     print(robot.drive_system.left_wheel.get_degrees_spun())
+
+
+def test_spin_degree():
+    robot = rb.Snatch3rRobot()
+
+    robot.drive_system.spin_in_place_degrees(-180)
 
 
 def degree_experiment():
