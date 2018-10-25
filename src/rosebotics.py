@@ -128,12 +128,17 @@ class DriveSystem(object):
         """
         if degrees > 0:
             self.start_moving(duty_cycle_percent, -duty_cycle_percent)
+            while True:
+                if self.left_wheel.get_degrees_spun() >= (5.16 * degrees):
+                    self.stop_moving(stop_action)
+                    break
         if degrees < 0:
             self.start_moving(-duty_cycle_percent, duty_cycle_percent)
-        while True:
-            if self.left_wheel.get_degrees_spun() >= ( * degrees):
-                self.stop_moving(stop_action)
-                break
+            while True:
+                if self.left_wheel.get_degrees_spun() <= -(5.16 * degrees):
+                    self.stop_moving(stop_action)
+                    break
+        
         # TODO: Do a few experiments to determine the constant that converts
         # TODO:   from wheel-degrees-spun to robot-degrees-spun.
         # TODO:   Assume that the conversion is linear with respect to speed.
