@@ -14,7 +14,7 @@ def main():
     # test_go_inches()
     # test_spin_degree()
     # turn_degree_experiment()
-    test_turn_degrees()
+    # test_turn_degrees()
 
 
 def test_go_inches():
@@ -69,8 +69,12 @@ def test_turn_degrees():
     robot = rb.Snatch3rRobot()
 
     robot.drive_system.turn_degrees(90)
-
+    time.sleep(.5)
     robot.drive_system.turn_degrees(-90)
+
+
+def polygon(n):
+    
 
 
 main()
