@@ -13,7 +13,8 @@ def main():
     # degree_experiment()
     # test_go_inches()
     # test_spin_degree()
-    turn_degree_experiment()
+    # turn_degree_experiment()
+    test_turn_degrees()
 
 
 def test_go_inches():
@@ -62,6 +63,14 @@ def turn_degree_experiment():
     print(robot.drive_system.left_wheel.get_degrees_spun())
 # 989, 90 degrees    965, 90 degrees     974, 90 degrees
 # 10.84 degrees spun per degree
+
+
+def test_turn_degrees():
+    robot = rb.Snatch3rRobot()
+
+    robot.drive_system.turn_degrees(90)
+    
+    robot.drive_system.turn_degrees(-90)
 
 
 main()
