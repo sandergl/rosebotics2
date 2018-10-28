@@ -162,7 +162,7 @@ class DriveSystem(object):
         if degrees < 0:
             self.start_moving(0, duty_cycle_percent)
             while True:
-                if self.left_wheel.get_degrees_spun() <= (10.85 * degrees):
+                if self.right_wheel.get_degrees_spun() <= -(10.85 * degrees):
                     self.stop_moving(stop_action)
                     break
         # TODO: Do a few experiments to determine the constant that converts

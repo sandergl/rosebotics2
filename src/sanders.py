@@ -69,7 +69,7 @@ def test_turn_degrees():
     robot = rb.Snatch3rRobot()
 
     robot.drive_system.turn_degrees(90)
-    
+
     robot.drive_system.turn_degrees(-90)
 
 
