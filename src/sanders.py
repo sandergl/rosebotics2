@@ -12,10 +12,10 @@ def main():
     # movement_experiment()
     # degree_experiment()
     # test_go_inches()
-    test_spin_degree()
+    # test_spin_degree()
     # turn_degree_experiment()
     # test_turn_degrees()
-    # test_polygon()
+    test_polygon()
 
 
 def test_go_inches():
@@ -82,9 +82,9 @@ def polygon(n):
     angle = 360 / n
     for k in range(n):
         frank.drive_system.go_straight_inches(6)
-        time.sleep(.25)
+        time.sleep(1)
         frank.drive_system.spin_in_place_degrees(angle)
-        time.sleep(.25)
+        time.sleep(1)
 
 
 def test_polygon():
