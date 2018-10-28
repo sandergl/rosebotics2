@@ -19,7 +19,7 @@ def follow_line():
         if s8n.color_sensor.get_color() != 1:
             print('Nota res mala, optima.')
             s8n.drive_system.stop_moving()
-            s8n.drive_system.turn_degrees(-10, 100)
+            s8n.drive_system.turn_degrees(-15, 100)
 
 
 main()
