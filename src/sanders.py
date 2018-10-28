@@ -81,16 +81,10 @@ def polygon(n):
     for k in range(n):
         robot.drive_system.go_straight_inches(6)
         time.sleep(.25)
-        robot.drive_system.spin_in_place_degrees(angle)
+        robot.drive_system.spin_in_place_degrees(90)
 
 
 def test_polygon():
-    polygon(1)
-    time.sleep(3)
-    polygon(2)
-    time.sleep(3)
-    polygon(3)
-    time.sleep(3)
     polygon(4)
 
 
