@@ -8,6 +8,9 @@ import time
 
 
 def main():
+    robot = rb.Snatch3rRobot()
+
+    robot.drive_system.stop_moving()
     """ Runs YOUR specific part of the project """
 
 
