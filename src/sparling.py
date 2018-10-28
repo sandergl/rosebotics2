@@ -12,6 +12,7 @@ def main():
     color = rb.Color.BLUE.value
     move_to_color(color)
 
+    # BLUE does not work on mine when heading down the board
 
 def move_to_color(color):
     robot = rb.Snatch3rRobot()
