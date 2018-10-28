@@ -14,11 +14,10 @@ def main():
 def follow_line():
     s8n = rb.Snatch3rRobot()
     s8n.color_sensor.get_color()
-    white = rb.Color.WHITE
     while True:
         s8n.drive_system.start_moving(20, 20)
-        if s8n.color_sensor.get_color() == white:
+        if s8n.color_sensor.get_color() != 1:
             s8n.drive_system.stop_moving()
-            s8n.drive_system.spin_in_place_degrees(90, 50)
+            s8n.drive_system.turn_degrees(90, 50)
 
 main()
