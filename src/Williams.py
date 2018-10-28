@@ -12,13 +12,13 @@ def main():
     follow_line()
 
 def follow_line():
-    robot = rb.Snatch3rRobot()
-    robot.color_sensor.get_reflected_intensity()
+    s8n = rb.Snatch3rRobot()
+    s8n.color_sensor.get_color()
     white = rb.Color.WHITE
     while True:
-        robot.drive_system.start_moving(50, 50)
-        if robot.color_sensor.get_color() == white:
-            robot.drive_system.stop_moving()
-            robot.drive_system.spin_in_place_degrees(10, 50)
+        s8n.drive_system.start_moving(20, 20)
+        if s8n.color_sensor.get_color() == white:
+            s8n.drive_system.stop_moving()
+            s8n.drive_system.spin_in_place_degrees(90, 50)
 
 main()
