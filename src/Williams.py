@@ -17,6 +17,7 @@ def follow_line():
     while True:
         s8n.drive_system.start_moving(20, 20)
         if s8n.color_sensor.get_color() != 1:
+            print('here')
             s8n.drive_system.stop_moving()
             s8n.drive_system.turn_degrees(90, 50)
 
