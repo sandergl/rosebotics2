@@ -111,6 +111,8 @@ class DriveSystem(object):
         while True:
             if self.left_wheel.get_degrees_spun() >= (86.39 * inches):
                 self.stop_moving(stop_action)
+                self.left_wheel.reset_degrees_spun()
+                self.right_wheel.reset_degrees_spun()
                 break
         # TODO: Do a few experiments to determine the constant that converts
         # TODO:   from wheel-degrees-spun to robot-inches-moved.

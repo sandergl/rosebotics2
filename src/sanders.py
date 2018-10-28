@@ -83,7 +83,7 @@ def polygon(n):
     for k in range(n):
         frank.drive_system.go_straight_inches(6)
         time.sleep(.25)
-        frank.drive_system.spin_in_place_degrees(-angle)
+        frank.drive_system.spin_in_place_degrees(angle)
         time.sleep(.25)
 
 
