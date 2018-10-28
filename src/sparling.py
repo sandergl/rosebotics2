@@ -9,7 +9,7 @@ import time
 
 def main():
     """ Runs YOUR specific part of the project """
-    color = rb.Color.YELLOW.value
+    color = rb.Color.GREEN.value
     move_to_color(color)
 
     # BLUE does not work on mine when heading down the board

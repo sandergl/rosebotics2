@@ -77,13 +77,13 @@ def test_turn_degrees():
 
 
 def polygon(n):
-    frank = rb.Snatch3rRobot()
+    s8n = rb.Snatch3rRobot()
 
     angle = 360 / n
     for k in range(n):
-        frank.drive_system.go_straight_inches(18)
+        s8n.drive_system.go_straight_inches(18)
         time.sleep(1)
-        frank.drive_system.spin_in_place_degrees(angle)
+        s8n.drive_system.spin_in_place_degrees(angle)
         time.sleep(1)
 
 
