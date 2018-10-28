@@ -12,10 +12,10 @@ def main():
     # movement_experiment()
     # degree_experiment()
     # test_go_inches()
-    # test_spin_degree()
+    test_spin_degree()
     # turn_degree_experiment()
     # test_turn_degrees()
-    test_polygon()
+    # test_polygon()
 
 
 def test_go_inches():
@@ -38,7 +38,9 @@ def movement_experiment():
 def test_spin_degree():
     robot = rb.Snatch3rRobot()
 
-    robot.drive_system.spin_in_place_degrees(-180)
+    for k in range(4):
+        robot.drive_system.spin_in_place_degrees(90)
+        time.sleep(.5)
 
 
 def degree_experiment():
@@ -75,13 +77,14 @@ def test_turn_degrees():
 
 
 def polygon(n):
-    robot = rb.Snatch3rRobot()
+    frank = rb.Snatch3rRobot()
 
     angle = 360 / n
     for k in range(n):
-        robot.drive_system.go_straight_inches(6)
+        frank.drive_system.go_straight_inches(6)
         time.sleep(.25)
-        robot.drive_system.spin_in_place_degrees(90)
+        frank.drive_system.spin_in_place_degrees(-angle)
+        time.sleep(.25)
 
 
 def test_polygon():

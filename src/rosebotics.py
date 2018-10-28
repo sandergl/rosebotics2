@@ -131,12 +131,16 @@ class DriveSystem(object):
             while True:
                 if self.left_wheel.get_degrees_spun() >= (5.16 * degrees):
                     self.stop_moving(stop_action)
+                    self.left_wheel.reset_degrees_spun()
+                    self.right_wheel.reset_degrees_spun()
                     break
         if degrees < 0:
             self.start_moving(-duty_cycle_percent, duty_cycle_percent)
             while True:
                 if self.left_wheel.get_degrees_spun() <= (5.16 * degrees):
                     self.stop_moving(stop_action)
+                    self.left_wheel.reset_degrees_spun()
+                    self.right_wheel.reset_degrees_spun()
                     break
         
         # TODO: Do a few experiments to determine the constant that converts
@@ -158,12 +162,14 @@ class DriveSystem(object):
             while True:
                 if self.left_wheel.get_degrees_spun() >= (10.85 * degrees):
                     self.stop_moving(stop_action)
+                    self.left_wheel.reset_degrees_spun()
                     break
         if degrees < 0:
             self.start_moving(0, duty_cycle_percent)
             while True:
                 if self.right_wheel.get_degrees_spun() >= -(10.85 * degrees):
                     self.stop_moving(stop_action)
+                    self.right_wheel.reset_degrees_spun()
                     break
         # TODO: Do a few experiments to determine the constant that converts
         # TODO:   from wheel-degrees-spun to robot-degrees-turned.
