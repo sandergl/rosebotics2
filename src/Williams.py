@@ -26,10 +26,12 @@ def beep_for_color():
     camera = rb2.Camera()
     camera.set_signature()
     blank = camera.get_biggest_blob()
-    if camera.get_biggest_blob() > blank:
-        ev3.Sound.beep().wait()
+    while True:
+        if camera.get_biggest_blob() > blank:
+            ev3.Sound.beep().wait()
 
-    if s8n.touch_sensor.is_pressed == 1:
-        break
+        if s8n.touch_sensor.is_pressed() == 1:
+            break
+
 
 main()
