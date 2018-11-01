@@ -12,6 +12,7 @@ def main():
     """ Runs YOUR specific part of the project """
     # color = rb.Color.GREEN.value
     # move_to_color(color)
+    infared_sensor()
 
     # WHITE/RED does not work same with the BLUE/GREEN going down
 
@@ -28,10 +29,10 @@ def infared_sensor():
     button = robot.touch_sensor
     while True:
         distance = robot.proximity_sensor.get_distance_to_nearest_object_in_inches()
-        if distance < 15:
+        if distance < 39:
             ev3.Sound.beep().wait()
             time.sleep(1)
-        if button.is_pressed() == True:
+        if button.is_pressed() == 1:
             break
 
 
