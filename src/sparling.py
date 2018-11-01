@@ -29,7 +29,7 @@ def infared_sensor():
     button = robot.touch_sensor
     while True:
         distance = robot.proximity_sensor.get_distance_to_nearest_object_in_inches()
-        if distance < 39:
+        if distance < 15:
             ev3.Sound.beep().wait()
             time.sleep(1)
         if button.is_pressed() == 1:
