@@ -95,7 +95,7 @@ def test_polygon():
 def test_raise_and_close():
     robot = rb.ArmAndClaw
 
-    robot.raise_arm_and_close_claw()
+    robot.raise_arm_and_close_claw(robot)
 
 
 def test_calibrate():
