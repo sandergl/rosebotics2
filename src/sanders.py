@@ -3,7 +3,7 @@
   Fall term, 2018-2019.
 """
 
-import rosebotics as rb
+import rosebotics_new as rb
 import time
 
 
@@ -15,7 +15,8 @@ def main():
     # test_spin_degree()
     # turn_degree_experiment()
     # test_turn_degrees()
-    test_polygon()
+    # test_polygon()
+    test_calibrate()
 
 
 def test_go_inches():
@@ -89,6 +90,24 @@ def polygon(n):
 
 def test_polygon():
     polygon(4)
+
+
+def test_raise_and_close():
+    robot = rb.ArmAndClaw
+
+    robot.raise_arm_and_close_claw()
+
+
+def test_calibrate():
+    robot = rb.ArmAndClaw
+
+    robot.calibrate()
+
+
+def test_move_arm_to_position():
+    robot = rb.ArmAndClaw
+
+    robot.move_arm_to_position(360 * 7)
 
 
 main()

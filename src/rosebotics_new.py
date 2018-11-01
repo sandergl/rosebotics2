@@ -749,7 +749,7 @@ class ArmAndClaw(object):
             if self.motor.get_degrees_spun() <= (-14.2 * 360):
                 self.motor.stop_spinning()
                 break
-        # TODO: Do this as STEP 2 of implementing this class.
+        # DONE: Do this as STEP 2 of implementing this class.
 
     def raise_arm_and_close_claw(self):
         """
@@ -770,5 +770,10 @@ class ArmAndClaw(object):
         Spin the arm's motor until it reaches the given position.
         Move at a reasonable speed.
         """
-        
-        # TODO: Do this as STEP 3 of implementing this class.
+        self.motor.reset_degrees_spun()
+        self.motor.start_spinning()
+        while True:
+            if self.motor.get_degrees_spun() >= position:
+                self.motor.stop_spinning()
+                break
+        # DONE: Do this as STEP 3 of implementing this class.
