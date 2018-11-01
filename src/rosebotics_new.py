@@ -150,7 +150,7 @@ class DriveSystem(object):
        their colleagues, the entire team, and Garrett Sanders.
     """
 
-    # TODO: In the above line, put the name of the primary author of this class.
+    # DONE: In the above line, put the name of the primary author of this class.
 
     def __init__(self,
                  left_wheel_port=ev3.OUTPUT_B,
@@ -213,16 +213,16 @@ class DriveSystem(object):
         self.start_moving(duty_cycle_percent, duty_cycle_percent)
         while True:
             if self.left_wheel.get_degrees_spun() >= (86.39 * inches):
-                self.stop_moving(stop_action)
+                self.stop_moving()
                 self.left_wheel.reset_degrees_spun()
                 self.right_wheel.reset_degrees_spun()
                 break
-        # TODO: Use one of the Wheel object's   get_degrees_spun   method.
-        # TODO: Do a few experiments to determine the constant that converts
-        # TODO:   from wheel-DEGREES-spun to robot-INCHES-moved.
-        # TODO:   Assume that the conversion is linear with respect to speed.
-        # TODO: Don't forget that the Wheel object's position begins wherever
-        # TODO:   it last was, not necessarily 0.
+        # DONE: Use one of the Wheel object's   get_degrees_spun   method.
+        # DONE: Do a few experiments to determine the constant that converts
+        # DONE:   from wheel-DEGREES-spun to robot-INCHES-moved.
+        # DONE:   Assume that the conversion is linear with respect to speed.
+        # DONE: Don't forget that the Wheel object's position begins wherever
+        # DONE:   it last was, not necessarily 0.
 
     def spin_in_place_degrees(self,
                               degrees,
@@ -240,7 +240,7 @@ class DriveSystem(object):
             self.start_moving(duty_cycle_percent, -duty_cycle_percent)
             while True:
                 if self.left_wheel.get_degrees_spun() >= (5.6 * degrees):
-                    self.stop_moving(stop_action)
+                    self.stop_moving()
                     self.left_wheel.reset_degrees_spun()
                     self.right_wheel.reset_degrees_spun()
                     break
@@ -248,16 +248,16 @@ class DriveSystem(object):
             self.start_moving(-duty_cycle_percent, duty_cycle_percent)
             while True:
                 if self.left_wheel.get_degrees_spun() <= (5.6 * degrees):
-                    self.stop_moving(stop_action)
+                    self.stop_moving()
                     self.left_wheel.reset_degrees_spun()
                     self.right_wheel.reset_degrees_spun()
                     break
-        # TODO: Use one of the Wheel object's   get_degrees_spun   method.
-        # TODO: Do a few experiments to determine the constant that converts
-        # TODO:   from WHEEL-degrees-spun to ROBOT-degrees-spun.
-        # TODO:   Assume that the conversion is linear with respect to speed.
-        # TODO: Don't forget that the Wheel object's position begins wherever
-        # TODO:   it last was, not necessarily 0.
+        # DONE: Use one of the Wheel object's   get_degrees_spun   method.
+        # DONE: Do a few experiments to determine the constant that converts
+        # DONE:   from WHEEL-degrees-spun to ROBOT-degrees-spun.
+        # DONE:   Assume that the conversion is linear with respect to speed.
+        # DONE: Don't forget that the Wheel object's position begins wherever
+        # DONE:   it last was, not necessarily 0.
 
     def turn_degrees(self,
                      degrees,
@@ -275,29 +275,29 @@ class DriveSystem(object):
             self.start_moving(duty_cycle_percent, 0)
             while True:
                 if self.left_wheel.get_degrees_spun() >= (10.85 * degrees):
-                    self.stop_moving(stop_action)
+                    self.stop_moving()
                     self.left_wheel.reset_degrees_spun()
                     break
         if degrees < 0:
             self.start_moving(0, duty_cycle_percent)
             while True:
                 if self.right_wheel.get_degrees_spun() >= -(10.85 * degrees):
-                    self.stop_moving(stop_action)
+                    self.stop_moving()
                     self.right_wheel.reset_degrees_spun()
                     break
-        # TODO: Use the Wheel object's   get_degrees_spun   method.
-        # TODO: Do a few experiments to determine the constant that converts
-        # TODO:   from WHEEL-degrees-SPUN to ROBOT-degrees-TURNED.
-        # TODO:   Assume that the conversion is linear with respect to speed.
-        # TODO: Don't forget that the Wheel object's position begins wherever
-        # TODO:   it last was, not necessarily 0.
+        # DONE: Use the Wheel object's   get_degrees_spun   method.
+        # DONE: Do a few experiments to determine the constant that converts
+        # DONE:   from WHEEL-degrees-SPUN to ROBOT-degrees-TURNED.
+        # DONE:   Assume that the conversion is linear with respect to speed.
+        # DONE: Don't forget that the Wheel object's position begins wherever
+        # DONE:   it last was, not necessarily 0.
 
 
 class TouchSensor(low_level_rb.TouchSensor):
     """
     A class for an EV3 touch sensor.
     Primary authors:  The ev3dev authors, David Mutchler, Dave Fisher,
-       their colleagues, the entire team, and PUT_YOUR_NAME_HERE.
+       their colleagues, the entire team, and Elijah Williams.
     """
 
     def __init__(self, port=ev3.INPUT_1):
@@ -313,7 +313,7 @@ class TouchSensor(low_level_rb.TouchSensor):
         while True:
             if self.touch_sensor.get_value() == 1:
                 break
-        # TODO.
+        # DONE.
 
     def wait_until_released(self):
         """ Waits (doing nothing new) until the touch sensor is released. """
@@ -321,14 +321,14 @@ class TouchSensor(low_level_rb.TouchSensor):
         while True:
             if self.touch_sensor.get_value() == 0:
                 break
-        # TODO
+        # DONE
 
 
 class ColorSensor(low_level_rb.ColorSensor):
     """
     A class for an EV3 color sensor.
     Primary authors:  The ev3dev authors, David Mutchler, Dave Fisher,
-       their colleagues, the entire team, and PUT_YOUR_NAME_HERE.
+       their colleagues, the entire team, and Shamus Sparling.
     """
 
     def __init__(self, port=ev3.INPUT_3):
@@ -380,7 +380,7 @@ class ColorSensor(low_level_rb.ColorSensor):
         while True:
             if self.get_reflected_intensity() < reflected_light_intensity:
                 break
-        # TODO.
+        # DONE.
 
     def wait_until_intensity_is_greater_than(self, reflected_light_intensity):
         """
@@ -391,7 +391,7 @@ class ColorSensor(low_level_rb.ColorSensor):
         while True:
             if self.get_reflected_intensity() > reflected_light_intensity:
                 break
-        # TODO.
+        # DONE.
 
     def wait_until_color_is(self, color):
         """
@@ -402,7 +402,7 @@ class ColorSensor(low_level_rb.ColorSensor):
         while True:
             if self.get_color() == color:
                 break
-        # TODO.
+        # DONE.
 
     def wait_until_color_is_one_of(self, colors):
         """
@@ -414,7 +414,7 @@ class ColorSensor(low_level_rb.ColorSensor):
             for k in range(len(colors)):
                 if self.get_color() == colors[k]:
                     break
-        # TODO.
+        # DONE.
 
 
 class Camera(object):
