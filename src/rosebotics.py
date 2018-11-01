@@ -114,9 +114,9 @@ class DriveSystem(object):
                 self.left_wheel.reset_degrees_spun()
                 self.right_wheel.reset_degrees_spun()
                 break
-        # TODO: Do a few experiments to determine the constant that converts
-        # TODO:   from wheel-degrees-spun to robot-inches-moved.
-        # TODO:   Assume that the conversion is linear with respect to speed.
+        # DONE: Do a few experiments to determine the constant that converts
+        # DONE:   from wheel-degrees-spun to robot-inches-moved.
+        # DONE:   Assume that the conversion is linear with respect to speed.
 
     def spin_in_place_degrees(self,
                               degrees,
@@ -145,9 +145,9 @@ class DriveSystem(object):
                     self.right_wheel.reset_degrees_spun()
                     break
         
-        # TODO: Do a few experiments to determine the constant that converts
-        # TODO:   from wheel-degrees-spun to robot-degrees-spun.
-        # TODO:   Assume that the conversion is linear with respect to speed.
+        # DONE: Do a few experiments to determine the constant that converts
+        # DONE:   from wheel-degrees-spun to robot-degrees-spun.
+        # DONE:   Assume that the conversion is linear with respect to speed.
 
     def turn_degrees(self,
                      degrees,
@@ -173,9 +173,9 @@ class DriveSystem(object):
                     self.stop_moving(stop_action)
                     self.right_wheel.reset_degrees_spun()
                     break
-        # TODO: Do a few experiments to determine the constant that converts
-        # TODO:   from wheel-degrees-spun to robot-degrees-turned.
-        # TODO:   Assume that the conversion is linear with respect to speed.
+        # DONE: Do a few experiments to determine the constant that converts
+        # DONE:   from wheel-degrees-spun to robot-degrees-turned.
+        # DONE:   Assume that the conversion is linear with respect to speed.
 
 
 # class ArmAndClaw(object):
