@@ -150,7 +150,7 @@ class DriveSystem(object):
        their colleagues, the entire team, and Garrett Sanders.
     """
 
-    # TODO: In the above line, put the name of the primary author of this class.
+    # DONE: In the above line, put the name of the primary author of this class.
 
     def __init__(self,
                  left_wheel_port=ev3.OUTPUT_B,
@@ -213,7 +213,7 @@ class DriveSystem(object):
         self.start_moving(duty_cycle_percent, duty_cycle_percent)
         while True:
             if self.left_wheel.get_degrees_spun() >= (86.39 * inches):
-                self.stop_moving(stop_action)
+                self.stop_moving()
                 self.left_wheel.reset_degrees_spun()
                 self.right_wheel.reset_degrees_spun()
                 break
@@ -240,7 +240,7 @@ class DriveSystem(object):
             self.start_moving(duty_cycle_percent, -duty_cycle_percent)
             while True:
                 if self.left_wheel.get_degrees_spun() >= (5.6 * degrees):
-                    self.stop_moving(stop_action)
+                    self.stop_moving()
                     self.left_wheel.reset_degrees_spun()
                     self.right_wheel.reset_degrees_spun()
                     break
@@ -248,7 +248,7 @@ class DriveSystem(object):
             self.start_moving(-duty_cycle_percent, duty_cycle_percent)
             while True:
                 if self.left_wheel.get_degrees_spun() <= (5.6 * degrees):
-                    self.stop_moving(stop_action)
+                    self.stop_moving()
                     self.left_wheel.reset_degrees_spun()
                     self.right_wheel.reset_degrees_spun()
                     break
@@ -275,14 +275,14 @@ class DriveSystem(object):
             self.start_moving(duty_cycle_percent, 0)
             while True:
                 if self.left_wheel.get_degrees_spun() >= (10.85 * degrees):
-                    self.stop_moving(stop_action)
+                    self.stop_moving()
                     self.left_wheel.reset_degrees_spun()
                     break
         if degrees < 0:
             self.start_moving(0, duty_cycle_percent)
             while True:
                 if self.right_wheel.get_degrees_spun() >= -(10.85 * degrees):
-                    self.stop_moving(stop_action)
+                    self.stop_moving()
                     self.right_wheel.reset_degrees_spun()
                     break
         # DONE: Use the Wheel object's   get_degrees_spun   method.
@@ -297,7 +297,7 @@ class TouchSensor(low_level_rb.TouchSensor):
     """
     A class for an EV3 touch sensor.
     Primary authors:  The ev3dev authors, David Mutchler, Dave Fisher,
-       their colleagues, the entire team, and PUT_YOUR_NAME_HERE.
+       their colleagues, the entire team, and Elijah Williams.
     """
 
     def __init__(self, port=ev3.INPUT_1):
@@ -328,7 +328,7 @@ class ColorSensor(low_level_rb.ColorSensor):
     """
     A class for an EV3 color sensor.
     Primary authors:  The ev3dev authors, David Mutchler, Dave Fisher,
-       their colleagues, the entire team, and PUT_YOUR_NAME_HERE.
+       their colleagues, the entire team, and Shamus Sparling.
     """
 
     def __init__(self, port=ev3.INPUT_3):
