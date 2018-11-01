@@ -24,10 +24,13 @@ def follow_line():
 def beep_for_color():
     s8n = rb2.Snatch3rRobot
     camera = rb2.Camera()
-    camera.set_signature()
+    #camera.set_signature(sig_name)
     blank = camera.get_biggest_blob()
+    blank = blank.get_area()
     while True:
-        if camera.get_biggest_blob() > blank:
+        object = camera.get_biggest_blob()
+        object = object.get_area
+        if object> blank:
             ev3.Sound.beep().wait()
 
         if s8n.touch_sensor.is_pressed() == 1:
