@@ -93,21 +93,22 @@ def test_polygon():
 
 
 def test_raise_and_close():
-    robot = rb.ArmAndClaw
+    robot = rb.Snatch3rRobot()
 
-    robot.raise_arm_and_close_claw(robot)
+    robot.arm.raise_arm_and_close_claw()
 
 
 def test_calibrate():
-    robot = rb.ArmAndClaw
-
-    robot.calibrate()
+    robot = rb.Snatch3rRobot()
+    print(1)
+    robot.arm.calibrate()
+    print(2)
 
 
 def test_move_arm_to_position():
-    robot = rb.ArmAndClaw
+    robot = rb.Snatch3rRobot()
 
-    robot.move_arm_to_position(360 * 7)
+    robot.arm.move_arm_to_position(360 * 7)
 
 
 main()
