@@ -133,9 +133,8 @@ class Snatch3rRobot(object):
         self.camera = Camera(camera_port)
 
         self.proximity_sensor = InfraredAsProximitySensor(ir_sensor_port)
-        # self.beacon_sensor = InfraredAsBeaconSensor(channel=1)
-        # self.beacon_button_sensor = InfraredAsBeaconButtonSensor(ir_sensor,
-        #                                                          channel=1)
+        self.beacon_sensor = InfraredAsBeaconSensor(channel=1)
+        self.beacon_button_sensor = InfraredAsBeaconButtonSensor(channel=1)
 
         self.brick_button_sensor = BrickButtonSensor()
 
@@ -548,8 +547,8 @@ class InfraredAsProximitySensor(low_level_rb.InfraredSensor):
         in inches, where about 39.37 inches (which is 100 cm) means no object
         is within its field of vision.
         """
-        inches_per_cm = 1/2.54
-        return 70 * inches_per_cm * self.get_distance_to_nearest_object() / 100
+        inches_per_cm = 2.54
+        return 70 / inches_per_cm * self.get_distance_to_nearest_object() / 100
 
 
 class InfraredAsBeaconSensor(object):
@@ -563,7 +562,7 @@ class InfraredAsBeaconSensor(object):
 
     def __init__(self, channel=1):
         self.channel = channel
-        self._underlying_ir_sensor = ev3.BeaconSeeker()
+        self._underlying_ir_sensor = ev3.BeaconSeeker(channel=channel)
 
     def set_channel(self, channel):
         """
@@ -571,7 +570,7 @@ class InfraredAsBeaconSensor(object):
         Beacon has a switch that can set the channel to 1, 2, 3 or 4.
         """
         self.channel = channel
-        self._underlying_ir_sensor = ev3.BeaconSeeker()
+        self._underlying_ir_sensor = ev3.BeaconSeeker(channel=channel)
 
     def get_channel(self):
         return self.channel
@@ -614,12 +613,9 @@ class InfraredAsBeaconButtonSensor(object):
     """
     # TODO: In the above line, put the name of the primary author of this class.
 
-    def __init__(self, ir_sensor, channel=1):
-        self._underlying_ir_sensor = ir_sensor
-        if channel:  # None means use the given InfraredSensor's channel
-            self._underlying_ir_sensor.channel = channel
-        self._underlying_remote_control = \
-            low_level_rb.BeaconButtonController(ir_sensor, channel)
+    def __init__(self, channel=1):
+        self.channel = channel
+        self._underlying_ir_sensor = ev3.RemoteControl(channel=channel)
         self.button_names = {
             "red_up": TOP_RED_BUTTON,
             "red_down": BOTTOM_RED_BUTTON,
@@ -633,34 +629,32 @@ class InfraredAsBeaconButtonSensor(object):
         Makes this sensor look for signals on the given channel. The physical
         Beacon has a switch that can set the channel to 1, 2, 3 or 4.
         """
-        self._underlying_ir_sensor.channel = channel
+        self.channel = channel
+        self._underlying_ir_sensor = ev3.RemoteControl(channel=channel)
 
     def get_channel(self):
-        return self._underlying_ir_sensor.channel
+        return self.channel
 
-    def get_buttons_pressed(self):
-        """
-        Returns a list of the numbers corresponding to buttons on the Beacon
-        which are currently pressed.
-        """
-        button_list = self._underlying_remote_control.buttons_pressed
-        for k in range(len(button_list)):
-            button_list[k] = self.button_names[button_list[k]]
+    # def get_buttons_pressed(self):
+    #     """
+    #     Returns a list of the numbers corresponding to buttons on the Beacon
+    #     which are currently pressed.
+    #     """
+    #     button_list = self._underlying_ir_sensor.buttons_pressed
+    #     for k in range(len(button_list)):
+    #         button_list[k] = self.button_names[button_list[k]]
 
     def is_top_red_button_pressed(self):
-        return self._underlying_remote_control.red_up
+        return self._underlying_ir_sensor.red_up
 
     def is_bottom_red_button_pressed(self):
-        return self._underlying_remote_control.red_down
+        return self._underlying_ir_sensor.red_down
 
     def is_top_blue_button_pressed(self):
-        return self._underlying_remote_control.blue_up
+        return self._underlying_ir_sensor.blue_up
 
     def is_bottom_blue_button_pressed(self):
-        return self._underlying_remote_control.buttons_pressed
-
-    def is_beacon_button_pressed(self):
-        return self._underlying_remote_control.buttons_pressed
+        return self._underlying_ir_sensor.blue_down
 
 
 class BrickButtonSensor(object):
