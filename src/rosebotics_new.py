@@ -132,8 +132,8 @@ class Snatch3rRobot(object):
         self.color_sensor = ColorSensor(color_sensor_port)
         self.camera = Camera(camera_port)
 
-        self.proximity_sensor = InfraredAsProximitySensor(ir_sensor_port)
-        self.beacon_sensor = InfraredAsBeaconSensor(channel=1)
+        #self.proximity_sensor = InfraredAsProximitySensor(ir_sensor_port)
+        #self.beacon_sensor = InfraredAsBeaconSensor(channel=1)
         self.beacon_button_sensor = InfraredAsBeaconButtonSensor(channel=1)
 
         self.brick_button_sensor = BrickButtonSensor()
@@ -755,7 +755,6 @@ class ArmAndClaw(object):
         """
         self.motor.start_spinning(100)
         while True:
-            print('here')
             if self.touch_sensor.get_value() == 1:
                 self.motor.stop_spinning()
                 break
