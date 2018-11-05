@@ -23,7 +23,7 @@ def follow_line():
             s8n.drive_system.turn_degrees(-15, 100)
 def beep_for_color():
     s8n = rb2.Snatch3rRobot()
-    camera = rb2.Camera()
+    camera = s8n.camera()
     #camera.set_signature(sig_name)
     blank = camera.get_biggest_blob()
     blank = blank.get_area()
