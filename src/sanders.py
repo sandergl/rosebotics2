@@ -16,9 +16,9 @@ def main():
     # turn_degree_experiment()
     # test_turn_degrees()
     # test_polygon()
-    # test_calibrate()
+    test_calibrate()
     # test_raise_and_close()
-    test_move_arm_to_position()
+    # test_move_arm_to_position()
 
 
 def test_go_inches():
@@ -107,7 +107,7 @@ def test_calibrate():
 def test_move_arm_to_position():
     robot = rb.Snatch3rRobot()
 
-    robot.arm.move_arm_to_position(360 * 7)
+    robot.arm.move_arm_to_position(360 * 10)
 
 
 main()
