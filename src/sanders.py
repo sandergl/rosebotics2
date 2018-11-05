@@ -96,7 +96,7 @@ def test_raise_and_close():
     robot = rb.Snatch3rRobot()
 
     robot.arm.raise_arm_and_close_claw()
-    
+
 
 def test_calibrate():
     robot = rb.Snatch3rRobot()
