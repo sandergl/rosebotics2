@@ -16,7 +16,9 @@ def main():
     # turn_degree_experiment()
     # test_turn_degrees()
     # test_polygon()
-    test_calibrate()
+    # test_calibrate()
+    # test_raise_and_close()
+    test_move_arm_to_position()
 
 
 def test_go_inches():

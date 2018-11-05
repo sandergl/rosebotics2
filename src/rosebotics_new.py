@@ -761,7 +761,8 @@ class ArmAndClaw(object):
         """
         self.motor.start_spinning(100)
         while True:
-            if self.touch_sensor.get_value == 1:
+            print('here')
+            if self.touch_sensor.get_value() == 1:
                 self.motor.stop_spinning()
                 break
         # DONE: Do this as STEP 1 of implementing this class.
