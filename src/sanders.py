@@ -96,13 +96,10 @@ def test_raise_and_close():
     robot = rb.Snatch3rRobot()
 
     robot.arm.raise_arm_and_close_claw()
-
+    
 
 def test_calibrate():
     robot = rb.Snatch3rRobot()
-    print(1)
-    robot.arm.calibrate()
-    print(2)
 
 
 def test_move_arm_to_position():

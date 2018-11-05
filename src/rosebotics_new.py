@@ -140,7 +140,7 @@ class Snatch3rRobot(object):
         self.brick_button_sensor = BrickButtonSensor()
 
         self.drive_system = DriveSystem(left_wheel_port, right_wheel_port)
-        #self.arm = ArmAndClaw(self.touch_sensor, arm_port)
+        self.arm = ArmAndClaw(self.touch_sensor, arm_port)
 
 
 class DriveSystem(object):
@@ -735,21 +735,21 @@ class ArmAndClaw(object):
         # so we start with the ArmAndClaw in that position.
         self.calibrate()
 
-    #def calibrate(self):
+    def calibrate(self):
         """
         Raise the arm at a reasonable speed until the touch sensor is pressed.
         Then lower the arm 14.2 revolutions (i.e., 14.2 * 360 degrees),
         again at a reasonable speed. Then set the motor's position to 0.
         (Hence, 0 means all the way DOWN and 14.2 * 360 means all the way UP).
         """
-        #self.raise_arm_and_close_claw()
-        #self.motor.reset_degrees_spun()
-        #self.motor.start_spinning(-100)
-        #while True:
-            #if self.motor.get_degrees_spun() <= (-14.2 * 360):
-                #self.motor.stop_spinning()
-                #self.motor.reset_degrees_spun()
-                #break
+        self.raise_arm_and_close_claw()
+        self.motor.reset_degrees_spun()
+        self.motor.start_spinning(-100)
+        while True:
+            if self.motor.get_degrees_spun() <= (-14.2 * 360):
+                self.motor.stop_spinning()
+                self.motor.reset_degrees_spun()
+                break
         # DONE: Do this as STEP 2 of implementing this class.
 
     def raise_arm_and_close_claw(self):
