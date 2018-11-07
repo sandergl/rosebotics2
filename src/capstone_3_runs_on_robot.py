@@ -29,13 +29,15 @@ def main():
     # --------------------------------------------------------------------------
     # TODO: 3. Construct a Snatch3rRobot.  Test.  When OK, delete this TODO.
     # --------------------------------------------------------------------------
-
+    s8n = rb.Snatch3rRobot()
     # --------------------------------------------------------------------------
     # TODO: 4. Add code that constructs a   com.MqttClient   that will
     # TODO:    be used to receive commands sent by the laptop.
     # TODO:    Connect it to this robot.  Test.  When OK, delete this TODO.
     # --------------------------------------------------------------------------
-
+    rc = RemoteControlEtc(s8n)
+    mqtt_client = com.MqttClient(rc)
+    mqtt_client.connect_to_pc()
     # --------------------------------------------------------------------------
     # TODO: 5. Add a class for your "delegate" object that will handle messages
     # TODO:    sent from the laptop.  Construct an instance of the class and
@@ -57,6 +59,29 @@ def main():
         # TODO:    Beacon is pressed.  Test.  When done, delete this TODO.
         # ----------------------------------------------------------------------
         time.sleep(0.01)  # For the delegate to do its work
+        ev3.Sound.set_volume(100)
+        if s8n.beacon_button_sensor.is_top_red_button_pressed() == True:
+            ev3.Sound.tone(1000, 500)
+
+        if s8n.beacon_button_sensor.is_top_blue_button_pressed() == True:
+            ev3.Sound.speak("Hail S8n!").wait()
+        if s8n.beacon_button_sensor.is_bottom_red_button_pressed() == True:
+            ev3.Sound.speak("Send nudes!").wait()
+        if s8n.beacon_button_sensor.is_bottom_blue_button_pressed() == True:
+            ev3.Sound.speak("Nota res mala, optima.").wait()
+class RemoteControlEtc(object):
+    def __init__(self, s8n):
+        """
+        Stores the robot.
+            :type   robot:    rb.Snatch3rRobot
+        :param s8n:
+        """
+        self.robot = s8n
+        pass
+    def go_forward(self, speed_string):
+        print("Here comes the nudes!", speed_string)
+        speed = int(speed_string)
+        self.robot.drive_system.start_moving(speed, speed)
 
 
 main()
