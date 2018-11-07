@@ -52,6 +52,10 @@ def main():
     # TODO:    When you understand this, delete this TODO.
     # --------------------------------------------------------------------------
     while True:
+        if robot.beacon_button_sensor.is_top_red_button_pressed() is True:
+            ev3.Sound.beep().wait()
+        if robot.beacon_button_sensor.is_top_blue_button_pressed() is True:
+            ev3.Sound.speak('Hello. How are you?')
         # ----------------------------------------------------------------------
         # TODO: 7. Add code that makes the robot beep if the top-red button
         # TODO:    on the Beacon is pressed.  Add code that makes the robot
@@ -74,6 +78,10 @@ class RemoteControlEtc(object):
         print(("Telling the robot to start moving at ", speed_string))
         speed = int(speed_string)
         self.robot.drive_system.start_moving(speed, speed)
+
+    #def beep_if_top_red_button_on_beacon_is_pressed(self):
+     #   if self.robot.beacon_button_sensor.is_top_red_button_pressed() == 'red up':
+      #      ev3.Sound.beep().wait()
 
 
 main()
