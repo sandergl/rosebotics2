@@ -35,6 +35,6 @@ def beep_for_color():
 
         if s8n.touch_sensor.is_pressed() == 1:
             break
-
+def follow_the_leader():
 
 main()
