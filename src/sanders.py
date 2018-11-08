@@ -11,20 +11,22 @@ def main():
     """ Runs YOUR specific part of the project """
     # movement_experiment()
     # degree_experiment()
-    # test_go_inches()
-    # test_spin_degree()
+    test_go_inches()
+    test_spin_degree()
     # turn_degree_experiment()
-    # test_turn_degrees()
+    test_turn_degrees()
     # test_polygon()
-    # test_calibrate()
+    test_calibrate()
     # test_raise_and_close()
-    # test_move_arm_to_position()
+    test_move_arm_to_position()
 
 
 def test_go_inches():
     robot = rb.Snatch3rRobot()
 
     robot.drive_system.go_straight_inches(10)
+
+    time.sleep(3)
 
 
 def movement_experiment():
@@ -44,6 +46,8 @@ def test_spin_degree():
     for k in range(4):
         robot.drive_system.spin_in_place_degrees(90)
         time.sleep(.5)
+
+    time.sleep(3)
 
 
 def degree_experiment():
@@ -67,6 +71,8 @@ def turn_degree_experiment():
     time.sleep(3.555)
     robot.drive_system.stop_moving()
     print(robot.drive_system.left_wheel.get_degrees_spun())
+
+    time.sleep(3)
 # 989, 90 degrees    965, 90 degrees     974, 90 degrees
 # 10.84 degrees spun per degree
 
@@ -102,6 +108,8 @@ def test_raise_and_close():
 
 def test_calibrate():
     robot = rb.Snatch3rRobot()
+
+    time.sleep(3)
 
 
 def test_move_arm_to_position():
