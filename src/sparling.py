@@ -10,7 +10,7 @@ import time
 
 def main():
     """ Runs YOUR specific part of the project """
-    # color = rb.Color.GREEN.value
+    # color = rb.Color.BLUE.value
     # move_to_color(color)
     infared_sensor()
 
