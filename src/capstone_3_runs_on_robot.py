@@ -88,22 +88,20 @@ class RemoteControlEtc(object):
         self.robot.drive_system.start_moving(speed, speed)
     def follow_the_leader(self):
 
-        blank = self.robot.camera.get_biggest_blob()
-        blank = blank.get_area()
+        self.robot.camera.get_biggest_blob()
         while True:
             leader = self.robot.camera.get_biggest_blob()
             area = leader.get_area()
-            if area > blank:
+            if area > 0:
                 self.robot.drive_system.start_moving(50, 50)
                 if leader.is_against_left_edge() == True:
                     self.robot.drive_system.turn_degrees(-15, 50)
-                    if leader.is_against_left_edge() == False:
-                        self.robot.drive_system.start_moving(50, 50)
+
                 if leader.is_against_right_edge() == True:
                     self.robot.drive_system.turn_degrees(15, 50)
-                    if leader.is_against_right_edge() == False:
-                        self.robot.drive_system.start_moving(50, 50)
+
                 if self.robot.proximity_sensor.get_distance_to_nearest_object_in_inches() <= 2:
                     self.robot.arm.raise_arm_and_close_claw()
 
+                self.robot.drive_system.start_moving(50, 50)
 main()
