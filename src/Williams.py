@@ -31,10 +31,15 @@ def beep_for_color():
         object = camera.get_biggest_blob()
         object = object.get_area()
         if object > blank:
-            ev3.Sound.beep().wait()
+            if object > 1000:
+                ev3.Sound.beep().wait()
 
         if s8n.touch_sensor.is_pressed() == 1:
             break
-def follow_the_leader():
+def test_touch_sensor():
+    s8n = rb2.Snatch3rRobot()
+    s8n.drive_system.start_moving(100, 100)
+    if s8n.touch_sensor.is_pressed():
+        s8n.drive_system.stop_moving()
 
 main()
