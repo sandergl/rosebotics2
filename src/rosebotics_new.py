@@ -211,14 +211,14 @@ class DriveSystem(object):
         """
         self.start_moving(duty_cycle_percent, duty_cycle_percent)
         while True:
-            if inches >= 0:
+            if duty_cycle_percent >= 0:
                 if self.left_wheel.get_degrees_spun() >= (86.39 * inches):
                     self.stop_moving()
                     self.left_wheel.reset_degrees_spun()
                     self.right_wheel.reset_degrees_spun()
                     break
-            if inches < 0:
-                if self.left_wheel.get_degrees_spun() <= (86.39 * inches):
+            if duty_cycle_percent < 0:
+                if self.left_wheel.get_degrees_spun() <= -(86.39 * inches):
                     self.stop_moving()
                     self.left_wheel.reset_degrees_spun()
                     self.right_wheel.reset_degrees_spun()
