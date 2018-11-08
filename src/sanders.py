@@ -120,9 +120,7 @@ def test_move_arm_to_position():
 def big_test():
     robot = rb.Snatch3rRobot()
 
-    robot.drive_system.start_moving(-100, -100)
-    time.sleep(1)
-    robot.drive_system.stop_moving()
+    robot.drive_system.go_straight_inches(-10)
     #robot.drive_system.go_straight_inches(10)
     #time.sleep(3)
     #robot.drive_system.spin_in_place_degrees(90)
