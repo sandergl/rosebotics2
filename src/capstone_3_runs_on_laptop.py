@@ -80,6 +80,11 @@ def setup_gui(root_window, mqtt_client):
     go_forward_button['command'] = \
         lambda: handle_go_forward(speed_entry_box, mqtt_client)
 
+    follow_the_leader_button = ttk.Button(frame, text="Follow the Leader!")
+    follow_the_leader_button.grid()
+    follow_the_leader_button['command'] = \
+        lambda: handle_follow_the_leader(mqtt_client)
+
 
 def handle_go_forward(entry_box, mqtt_client):
     """
@@ -114,6 +119,9 @@ def handle_go_forward(entry_box, mqtt_client):
     # TODO:
     # TODO:    Test by using a PRINT statement.  When done, delete this TODO.
     # --------------------------------------------------------------------------
+def handle_follow_the_leader(mqtt_client):
+
+    mqtt_client.send_message('follow_the_leader')
 
 
 main()

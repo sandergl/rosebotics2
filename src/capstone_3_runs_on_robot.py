@@ -69,6 +69,10 @@ def main():
             ev3.Sound.speak("Send nudes!").wait()
         if s8n.beacon_button_sensor.is_bottom_blue_button_pressed() == True:
             ev3.Sound.speak("Nota res mala, optima.").wait()
+
+
+
+
 class RemoteControlEtc(object):
     def __init__(self, s8n):
         """
@@ -82,6 +86,24 @@ class RemoteControlEtc(object):
         print("Here comes the nudes!", speed_string)
         speed = int(speed_string)
         self.robot.drive_system.start_moving(speed, speed)
+    def follow_the_leader(self):
 
+        blank = self.robot.camera.get_biggest_blob()
+        blank = blank.get_area()
+        while True:
+            leader = self.robot.camera.get_biggest_blob()
+            area = leader.get_area()
+            if area > blank:
+                self.robot.drive_system.start_moving(50, 50)
+                if leader.is_against_left_edge() == True:
+                    self.robot.drive_system.turn_degrees(-15, 50)
+                    if leader.is_against_left_edge() == False:
+                        self.robot.drive_system.start_moving(50, 50)
+                if leader.is_against_right_edge() == True:
+                    self.robot.drive_system.turn_degrees(15, 50)
+                    if leader.is_against_right_edge() == False:
+                        self.robot.drive_system.start_moving(50, 50)
+                if self.robot.proximity_sensor.get_distance_to_nearest_object_in_inches() <= 2:
+                    self.robot.arm.raise_arm_and_close_claw()
 
 main()

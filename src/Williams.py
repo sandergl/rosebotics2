@@ -33,6 +33,7 @@ def beep_for_color():
         if object > blank:
             if object > 1000:
                 ev3.Sound.beep().wait()
+                time.sleep(.5)
 
         if s8n.touch_sensor.is_pressed() == 1:
             break
