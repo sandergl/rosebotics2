@@ -6,12 +6,15 @@
 import time
 import ev3dev.ev3 as ev3
 import rosebotics_new as rb2
+import sounds as sf
+
 
 def main():
     """ Runs YOUR specific part of the project """
     #follow_line()
-
-    beep_for_color()
+    data, samplerate = sf.read('youtube_8660.wav')
+    sf.write('new_file.ogg', data, samplerate)
+    #beep_for_color()
 def follow_line():
     s8n = rb2.Snatch3rRobot()
     s8n.color_sensor.get_color()

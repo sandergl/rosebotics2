@@ -25,6 +25,7 @@ import mqtt_remote_method_calls as com
 import ev3dev.ev3 as ev3
 
 
+
 def main():
     # --------------------------------------------------------------------------
     # TODO: 3. Construct a Snatch3rRobot.  Test.  When OK, delete this TODO.
@@ -59,16 +60,7 @@ def main():
         # TODO:    Beacon is pressed.  Test.  When done, delete this TODO.
         # ----------------------------------------------------------------------
         time.sleep(0.01)  # For the delegate to do its work
-        ev3.Sound.set_volume(100)
-        if s8n.beacon_button_sensor.is_top_red_button_pressed() == True:
-            ev3.Sound.tone(1000, 500)
 
-        if s8n.beacon_button_sensor.is_top_blue_button_pressed() == True:
-            ev3.Sound.speak("Hail S8n!").wait()
-        if s8n.beacon_button_sensor.is_bottom_red_button_pressed() == True:
-            ev3.Sound.speak("Send nudes!").wait()
-        if s8n.beacon_button_sensor.is_bottom_blue_button_pressed() == True:
-            ev3.Sound.speak("Nota res mala, optima.").wait()
 
 
 
@@ -93,15 +85,19 @@ class RemoteControlEtc(object):
             leader = self.robot.camera.get_biggest_blob()
             area = leader.get_area()
             if area > 0:
-                self.robot.drive_system.start_moving(50, 50)
-                if leader.is_against_left_edge() == True:
-                    self.robot.drive_system.turn_degrees(-15, 50)
+                self.robot.drive_system.start_moving(100, 100)
 
-                if leader.is_against_right_edge() == True:
-                    self.robot.drive_system.turn_degrees(15, 50)
+                if leader.is_against_left_edge() is True:
+                    self.robot.drive_system.turn_degrees(-15, 100)
 
-                if self.robot.proximity_sensor.get_distance_to_nearest_object_in_inches() <= 2:
+                if leader.is_against_right_edge() is True:
+                    print("I'm against the right edge")
+                    self.robot.drive_system.turn_degrees(15, 100)
+                if self.robot.proximity_sensor.get_distance_to_nearest_object_in_inches() <= .01:
+                    self.robot.drive_system.stop_moving()
                     self.robot.arm.raise_arm_and_close_claw()
-
+                    break
                 self.robot.drive_system.start_moving(50, 50)
+
+
 main()
