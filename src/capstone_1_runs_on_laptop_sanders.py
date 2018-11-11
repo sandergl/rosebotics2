@@ -8,38 +8,6 @@ It uses MQTT to SEND information to a program running on the ROBOT.
 Authors:  David Mutchler, his colleagues, and Garrett Sanders.
 """
 
-# ------------------------------------------------------------------------------
-# TODO: 2. With your instructor, discuss the "big picture" of laptop-robot
-# TODO:    communication:
-# TODO:      - One program runs on your LAPTOP.  It displays a GUI.  When the
-# TODO:        user presses a button intended to make something happen on the
-# TODO:        ROBOT, the LAPTOP program sends a message to its MQTT client
-# TODO:        indicating what it wants the ROBOT to do, and the MQTT client
-# TODO:        SENDS that message TO a program running on the ROBOT.
-# TODO:
-# TODO:      - Another program runs on the ROBOT. It stays in a loop, responding
-# TODO:        to events on the ROBOT (like pressing buttons on the IR Beacon).
-# TODO:        It also, in the background, listens for messages TO the ROBOT
-# TODO:        FROM the program running on the LAPTOP.  When it hears such a
-# TODO:        message, it calls the method in the DELAGATE object's class
-# TODO:        that the message indicates, sending arguments per the message.
-# TODO:
-# TODO:  Once you understand the "big picture", delete this TODO (if you wish).
-# ------------------------------------------------------------------------------
-
-# ------------------------------------------------------------------------------
-# TODO: 3. One team member: change the following in mqtt_remote_method_calls.py:
-#                LEGO_NUMBER = 99
-# TODO:    to use YOUR robot's number instead of 99.
-# TODO:    Commit and push the change, then other team members Update Project.
-# TODO:    Then delete this TODO.
-# ------------------------------------------------------------------------------
-
-# ------------------------------------------------------------------------------
-# TODO: 4. Run this module.
-# TODO:    Study its code until you understand how the GUI is set up.
-# TODO:    Then delete this TODO.
-# ------------------------------------------------------------------------------
 
 import tkinter
 from tkinter import ttk
@@ -50,17 +18,13 @@ def main():
     """ Constructs and runs a GUI for this program. """
     root = tkinter.Tk()
 
-    mqtt_client = com.MqttClient()
+    receiver = Received(['No Color', 'Black', 'Blue', 'Green', 'Yellow', 'Red', 'White', 'Brown'])
+    mqtt_client = com.MqttClient(receiver)
     mqtt_client.connect_to_ev3()
 
     setup_gui(root, mqtt_client)
 
     root.mainloop()
-    # --------------------------------------------------------------------------
-    # TODO: 5. Add code above that constructs a   com.MqttClient   that will
-    # TODO:    be used to send commands to the robot.  Connect it to this EV3.
-    # TODO:    Test.  When OK, delete this TODO.
-    # --------------------------------------------------------------------------
 
 
 def setup_gui(root_window, mqtt_client):
@@ -143,6 +107,14 @@ def get_color(mqtt_client):
     """Tells the robot to retrieve the current color that is below it."""
     mqtt_client.send_message('get_color')
 
+
+class Received(object):
+    def __init__(self, colors):
+        self.colors = colors
+
+    def display_color(self, value):
+        color = self.colors[value]
+        print(color)
 
 
 main()
