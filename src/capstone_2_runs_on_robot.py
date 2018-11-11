@@ -9,16 +9,6 @@ It uses MQTT to RECEIVE information from a program running on the LAPTOP.
 
 Authors:  David Mutchler, his colleagues, and Shamus Sparling.
 """
-# ------------------------------------------------------------------------------
-# TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.  Then delete this TODO.
-# ------------------------------------------------------------------------------
-
-# ------------------------------------------------------------------------------
-# TODO: 2. With your instructor, review the "big picture" of laptop-robot
-# TODO:    communication, per the comment in mqtt_sender.py.
-# TODO:    Once you understand the "big picture", delete this TODO.
-# ------------------------------------------------------------------------------
-
 import rosebotics_new as rb
 import time
 import mqtt_remote_method_calls as com
@@ -77,6 +67,34 @@ class RemoteControlEtc(object):
         print("Telling the robot to start moving at", speed_string)
         speed = int(speed_string)
         self.robot.drive_system.start_moving(speed, speed)
+
+        color_1 = -1
+        while True:
+            color = self.robot.color_sensor.get_color()
+            if color != color_1:
+                if color == 0:
+                    print('no color')
+                if color == 1:
+                    print('black')
+                if color == 2:
+                    print('blue')
+                    self.robot.drive_system.turn_degrees(90)
+                if color == 3:
+                    print('green')
+                    self.robot.drive_system.turn_degrees(-90)
+                if color == 4:
+                    print('yellow')
+                    self.robot.drive_system.turn_degrees(360)
+                if color == 5:
+                    print('red')
+                    self.robot.drive_system.stop_moving()
+                    time.sleep(3)
+                    self.robot.drive_system.stop_moving(speed, speed)
+                if color == 6:
+                    print('white')
+                if color == 7:
+                    print('brown')
+            color_1 = self.robot.color_sensor.get_color()
 
 
 main()
