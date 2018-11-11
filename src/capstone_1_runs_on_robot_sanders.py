@@ -73,15 +73,17 @@ class RemoteControlEtc(object):
         """
         self.robot = robot
 
-    def go_forward(self, speed_string):
-        """Makes the robot go forward at the given speed."""
-        print(("Telling the robot to start moving at ", speed_string))
+    def go_forward(self, speed_string, distance_string):
+        """Makes the robot go forward at the given speed to reach the given distance."""
         speed = int(speed_string)
-        self.robot.drive_system.start_moving(speed, speed)
+        distance = int(distance_string)
+        self.robot.drive_system.go_straight_inches(distance, speed)
 
-    #def beep_if_top_red_button_on_beacon_is_pressed(self):
-     #   if self.robot.beacon_button_sensor.is_top_red_button_pressed() == 'red up':
-      #      ev3.Sound.beep().wait()
+    def go_backward(self, speed_string, distance_string):
+        """Makes the robot go backward at the given speed to reach the given distance."""
+        speed = int(speed_string)
+        distance = int(distance_string)
+        self.robot.drive_system.go_straight_inches(distance, speed)
 
 
 main()
