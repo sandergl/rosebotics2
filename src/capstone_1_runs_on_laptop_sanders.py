@@ -78,8 +78,8 @@ def setup_gui(root_window, mqtt_client):
 
     go_forward_button = ttk.Button(frame, text="Go Forward")
     go_backward_button = ttk.Button(frame, text="Go Backward")
-    turn_left_button = ttk.Button(frame, text="Turn Left")
-    turn_right_button = ttk.Button(frame, text="Turn Right")
+    spin_button = ttk.Button(frame, text="Spin")
+    get_color_button = ttk.Button(frame, text="Get Color")
     quit_button = ttk.Button(frame, text="QUIT")
 
     speed_label.grid()
@@ -91,14 +91,18 @@ def setup_gui(root_window, mqtt_client):
 
     go_forward_button.grid()
     go_backward_button.grid()
-    turn_left_button.grid()
-    turn_right_button.grid()
+    spin_button.grid()
+    get_color_button.grid()
     quit_button.grid()
 
     go_forward_button['command'] = \
         lambda: handle_go_forward(speed_entry_box, distance_entry_box, mqtt_client)
     go_backward_button['command'] = \
         lambda: handle_go_backward(speed_entry_box, distance_entry_box, mqtt_client)
+    spin_button['command'] = \
+        lambda: handle_spin(degree_entry_box, mqtt_client)
+    quit_button['command'] = \
+        lambda: handle_quit_running(root_window, mqtt_client)
 
 
 def handle_go_forward(entry_box_1, entry_box_2, mqtt_client):
@@ -117,6 +121,28 @@ def handle_go_backward(entry_box_1, entry_box_2, mqtt_client):
     speed_string = entry_box_1.get()
     distance_string = entry_box_2.get()
     mqtt_client.send_message('go_backward', [speed_string, distance_string])
+
+
+def handle_spin(entry_box, mqtt_client):
+    """
+    Tells the robot to spin degrees.
+    """
+    degree_string = entry_box.get()
+    mqtt_client.send_message('spin_degrees', [degree_string])
+
+
+def handle_quit_running(root, mqtt_client):
+    """
+    Quits out of the tkinter and tells robot to stop.
+    """
+    mqtt_client.send_message('quit_running')
+    root.destroy()
+
+
+def get_color(mqtt_client):
+    """Tells the robot to retrieve the current color that is below it."""
+    mqtt_client.send_message('get_color')
+
 
 
 main()

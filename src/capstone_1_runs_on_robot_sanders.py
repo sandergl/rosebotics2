@@ -36,6 +36,10 @@ def main():
     # TODO:    Connect it to this robot.  Test.  When OK, delete this TODO.
     # --------------------------------------------------------------------------
     rc = RemoteControlEtc(robot)
+
+    mqtt_client_2 = com.MqttClient()
+    mqtt_client_2.connect_to_pc()
+
     mqtt_client = com.MqttClient(rc)
     mqtt_client.connect_to_pc()
     # --------------------------------------------------------------------------
@@ -72,18 +76,34 @@ class RemoteControlEtc(object):
           :type robot: rb.Snatch3rRobot
         """
         self.robot = robot
+        self.mqtt_client = com.MqttClient
 
     def go_forward(self, speed_string, distance_string):
         """Makes the robot go forward at the given speed to reach the given distance."""
-        speed = int(speed_string)
+        speed = abs(int(speed_string))
         distance = int(distance_string)
         self.robot.drive_system.go_straight_inches(distance, speed)
 
     def go_backward(self, speed_string, distance_string):
         """Makes the robot go backward at the given speed to reach the given distance."""
-        speed = int(speed_string)
+        speed = -(abs(int(speed_string)))
         distance = int(distance_string)
         self.robot.drive_system.go_straight_inches(distance, speed)
+
+    def spin_degrees(self, degree_string):
+        """Makes the robot spin a certain number of degrees."""
+        degree = int(degree_string)
+        self.robot.drive_system.spin_in_place_degrees(degree)
+
+    def quit_running(self):
+        """Stops the robot."""
+        self.robot.drive_system.stop_moving()
+        exit()
+
+    def get_color(self):
+        """Retrieves the current color beneath the color sensor."""
+        self.mqtt_client.connect_to_pc()
+        color = self.robot.color_sensor.get_color()
 
 
 main()
