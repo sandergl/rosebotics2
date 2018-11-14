@@ -53,12 +53,7 @@ def main():
     # TODO:    When you understand this, delete this TODO.
     # --------------------------------------------------------------------------
     while True:
-        # ----------------------------------------------------------------------
-        # TODO: 7. Add code that makes the robot beep if the top-red button
-        # TODO:    on the Beacon is pressed.  Add code that makes the robot
-        # TODO:    speak "Hello. How are you?" if the top-blue button on the
-        # TODO:    Beacon is pressed.  Test.  When done, delete this TODO.
-        # ----------------------------------------------------------------------
+
         time.sleep(0.01)  # For the delegate to do its work
 
 
@@ -82,10 +77,9 @@ class RemoteControlEtc(object):
     def follow_the_leader(self):
 
         self.robot.camera.get_biggest_blob()
-        leader = self.robot.camera.get_biggest_blob()
-        area = leader.get_area()
         while True:
-
+            leader = self.robot.camera.get_biggest_blob()
+            area = leader.get_area()
             if area > 0:
                 self.robot.drive_system.start_moving(100, 100)
 
@@ -100,8 +94,8 @@ class RemoteControlEtc(object):
                     self.robot.drive_system.stop_moving()
                     self.robot.arm.raise_arm_and_close_claw()
                     time.sleep(.5)
-                    ev3.Sound.speak('Senpai in the streets, Hentai in the sheets')
-
+                    ev3.Sound.speak('Woof! Woof! I caught you!')
+                    print("Woof! Woof! I caught you!")
                     break
                 self.robot.drive_system.start_moving(50, 50)
 

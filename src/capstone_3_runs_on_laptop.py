@@ -71,14 +71,14 @@ def setup_gui(root_window, mqtt_client):
     frame = ttk.Frame(root_window, padding=10)
     frame.grid()
 
-    speed_entry_box = ttk.Entry(frame)
-    go_forward_button = ttk.Button(frame, text="Go forward")
+   # speed_entry_box = ttk.Entry(frame)
+    #go_forward_button = ttk.Button(frame, text="Go forward")
 
-    speed_entry_box.grid()
-    go_forward_button.grid()
+    #speed_entry_box.grid()
+    #go_forward_button.grid()
 
-    go_forward_button['command'] = \
-        lambda: handle_go_forward(speed_entry_box, mqtt_client)
+    #go_forward_button['command'] = \
+     #   lambda: handle_go_forward(speed_entry_box, mqtt_client)
 
     follow_the_leader_button = ttk.Button(frame, text="Follow the Leader!")
     follow_the_leader_button.grid()
@@ -86,7 +86,7 @@ def setup_gui(root_window, mqtt_client):
         lambda: handle_follow_the_leader(mqtt_client)
 
 
-def handle_go_forward(entry_box, mqtt_client):
+#def handle_go_forward(entry_box, mqtt_client):
     """
     Tells the robot to go forward at the speed specified in the given entry box.
     """
@@ -103,9 +103,9 @@ def handle_go_forward(entry_box, mqtt_client):
     # TODO:    necessary for that object to make its way to this function.
     # TODO:    When done, delete this TODO.
     # --------------------------------------------------------------------------
-    entry_box = entry_box.get()
-    print("Sending nudes", entry_box)
-    mqtt_client.send_message('go_forward', [entry_box])
+    #entry_box = entry_box.get()
+    #print("Sending nudes", entry_box)
+    #mqtt_client.send_message('go_forward', [entry_box])
     # --------------------------------------------------------------------------
     # TODO: 8. Add the single line of code needed to get the string that is
     # TODO:    currently in the entry box.
@@ -122,6 +122,14 @@ def handle_go_forward(entry_box, mqtt_client):
 def handle_follow_the_leader(mqtt_client):
 
     mqtt_client.send_message('follow_the_leader')
+
+class Received(object):
+    def __init__(self, edge):
+        """Initializes the variables to be used in the receiver from the robot."""
+        self.location = edge
+
+    def display_leader_location(self):
+        print("I'm losing the leader!")
 
 
 main()
