@@ -53,7 +53,8 @@ def main():
     """ Constructs and runs a GUI for this program. """
     root = tkinter.Tk()
 
-    mqtt_client = com.MqttClient()
+    receiver = Received(['No Color', 'Black', 'Blue', 'Green', 'Yellow', 'Red', 'White', 'Brown'])
+    mqtt_client = com.MqttClient(receiver)
     mqtt_client.connect_to_ev3()
 
     setup_gui(root, mqtt_client)
@@ -72,13 +73,17 @@ def setup_gui(root_window, mqtt_client):
     frame.grid()
 
     speed_entry_box = ttk.Entry(frame)
-    go_forward_button = ttk.Button(frame, text="Go forward")
+    go_forward_button = ttk.Button(frame, text="Start")
+    stop_button = ttk.Button(frame, text="Stop")
 
     speed_entry_box.grid()
     go_forward_button.grid()
+    stop_button.grid()
 
     go_forward_button['command'] = \
         lambda: handle_go_forward(speed_entry_box, mqtt_client)
+    stop_button['command'] = \
+        lambda: handle_stop(mqtt_client)
 
 
 def handle_go_forward(entry_box, mqtt_client):
@@ -89,5 +94,17 @@ def handle_go_forward(entry_box, mqtt_client):
     print("Sending the go_forward message with speed", speed_string)
     mqtt_client.send_message('go_forward', [speed_string])
 
+
+def handle_stop(mqtt_client):
+    mqtt_client.send_message('stop')
+
+
+class Received(object):
+    def __init__(self, colors):
+        self.colors = colors
+
+    def display_color(self, value):
+        color = self.colors[value]
+        print(color)
 
 main()
