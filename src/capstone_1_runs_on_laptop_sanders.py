@@ -18,7 +18,7 @@ def main():
     """ Constructs and runs a GUI for this program. """
     root = tkinter.Tk()
 
-    receiver = Received(['No Color', 'Black', 'Blue', 'Green', 'Yellow', 'Red', 'White', 'Brown'])
+    receiver = Received(['No Color', 'Black', 'Blue', 'Green', 'Yellow', 'Red', 'White', 'Brown'], root)
     mqtt_client = com.MqttClient(receiver)
     mqtt_client.connect_to_ev3()
 
@@ -109,11 +109,16 @@ def get_color(mqtt_client):
 
 
 class Received(object):
-    def __init__(self, colors):
+    def __init__(self, colors, root):
         self.colors = colors
+        self.picture_list = []
+        self.frame = ttk.Frame(root, padding=10)
+        self.frame.grid()
 
     def display_color(self, value):
         color = self.colors[value]
+        color_display = ttk.Label(self.frame, text=color)
+        color_display.grid()
         print(color)
 
 
