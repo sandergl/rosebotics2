@@ -82,9 +82,10 @@ class RemoteControlEtc(object):
     def follow_the_leader(self):
 
         self.robot.camera.get_biggest_blob()
+        leader = self.robot.camera.get_biggest_blob()
+        area = leader.get_area()
         while True:
-            leader = self.robot.camera.get_biggest_blob()
-            area = leader.get_area()
+
             if area > 0:
                 self.robot.drive_system.start_moving(100, 100)
 
@@ -99,7 +100,7 @@ class RemoteControlEtc(object):
                     self.robot.drive_system.stop_moving()
                     self.robot.arm.raise_arm_and_close_claw()
                     time.sleep(.5)
-                    ev3.Sound.speak('Hooray! I caught Alpha!')
+                    ev3.Sound.speak('Senpai in the streets, Hentai in the sheets')
 
                     break
                 self.robot.drive_system.start_moving(50, 50)
