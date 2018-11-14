@@ -43,7 +43,6 @@ def setup_gui(root_window, mqtt_client):
     go_forward_button = ttk.Button(frame, text="Go Forward")
     go_backward_button = ttk.Button(frame, text="Go Backward")
     spin_button = ttk.Button(frame, text="Spin")
-    get_color_button = ttk.Button(frame, text="Get Color")
     quit_button = ttk.Button(frame, text="QUIT")
 
     speed_label.grid()
@@ -56,7 +55,6 @@ def setup_gui(root_window, mqtt_client):
     go_forward_button.grid()
     go_backward_button.grid()
     spin_button.grid()
-    get_color_button.grid()
     quit_button.grid()
 
     go_forward_button['command'] = \
@@ -101,11 +99,6 @@ def handle_quit_running(root, mqtt_client):
     """
     mqtt_client.send_message('quit_running')
     root.destroy()
-
-
-def get_color(mqtt_client):
-    """Tells the robot to retrieve the current color that is below it."""
-    mqtt_client.send_message('get_color')
 
 
 class Received(object):
