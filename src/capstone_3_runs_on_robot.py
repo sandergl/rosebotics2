@@ -53,6 +53,9 @@ def main():
     # TODO:    When you understand this, delete this TODO.
     # --------------------------------------------------------------------------
     while True:
+        leader = s8n.camera.get_biggest_blob()
+        if leader.is_against_left_edge():
+            mqtt_client.send_message('display_leader_location')
 
         time.sleep(0.01)  # For the delegate to do its work
 

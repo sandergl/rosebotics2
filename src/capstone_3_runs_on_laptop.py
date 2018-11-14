@@ -52,8 +52,8 @@ import mqtt_remote_method_calls as com
 def main():
     """ Constructs and runs a GUI for this program. """
     root = tkinter.Tk()
-
-    mqtt_client = com.MqttClient()
+    received = Received('left')
+    mqtt_client = com.MqttClient(received)
     mqtt_client.connect_to_ev3()
 
     setup_gui(root, mqtt_client)
