@@ -38,7 +38,7 @@ def main():
         if robot.proximity_sensor.get_distance_to_nearest_object_in_inches() < 3:
             robot.drive_system.stop_moving()
             ev3.Sound.speak('Object in path').wait()
-            exit()
+            break
         time.sleep(0.01)  # For the delegate to do its work
 
 
@@ -72,10 +72,6 @@ class RemoteControlEtc(object):
         """Stops the robot."""
         self.robot.drive_system.stop_moving()
         exit()
-
-    def get_color(self):
-        """Retrieves the current color beneath the color sensor."""
-        color = self.robot.color_sensor.get_color()
 
 
 main()

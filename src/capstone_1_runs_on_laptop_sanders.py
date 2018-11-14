@@ -18,7 +18,7 @@ def main():
     """ Constructs and runs a GUI for this program. """
     root = tkinter.Tk()
 
-    receiver = Received(['No Color', 'Black', 'Blue', 'Green', 'Yellow', 'Red', 'White', 'Brown'], root)
+    receiver = Received(['No Color', 'Black', 'Blue', 'Green', 'Yellow', 'Red', 'White', 'Brown'])
     mqtt_client = com.MqttClient(receiver)
     mqtt_client.connect_to_ev3()
 
@@ -102,18 +102,13 @@ def handle_quit_running(root, mqtt_client):
 
 
 class Received(object):
-    def __init__(self, colors, root):
+    def __init__(self, colors):
         """Initializes the variables to be used in the receiver from the robot."""
         self.colors = colors
-        self.picture_list = []
-        self.frame = ttk.Frame(root, padding=10)
-        self.frame.grid()
 
     def display_color(self, value):
-        """Function of receiver that displays the current color below the robot."""
+        """"""
         color = self.colors[value]
-        color_display = ttk.Label(self.frame, text=color)
-        color_display.grid()
         print(color)
 
 
