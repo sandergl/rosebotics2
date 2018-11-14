@@ -78,6 +78,7 @@ class RemoteControlEtc(object):
         print("Here comes the nudes!", speed_string)
         speed = int(speed_string)
         self.robot.drive_system.start_moving(speed, speed)
+
     def follow_the_leader(self):
 
         self.robot.camera.get_biggest_blob()
@@ -87,15 +88,19 @@ class RemoteControlEtc(object):
             if area > 0:
                 self.robot.drive_system.start_moving(100, 100)
 
-                if leader.is_against_left_edge() is True:
+                if leader.is_against_left_edge():
                     self.robot.drive_system.turn_degrees(-15, 100)
 
-                if leader.is_against_right_edge() is True:
+                if leader.is_against_right_edge():
                     print("I'm against the right edge")
                     self.robot.drive_system.turn_degrees(15, 100)
+
                 if self.robot.proximity_sensor.get_distance_to_nearest_object_in_inches() <= .01:
                     self.robot.drive_system.stop_moving()
                     self.robot.arm.raise_arm_and_close_claw()
+                    time.sleep(.5)
+                    ev3.Sound.speak('Hooray! I caught Alpha!')
+
                     break
                 self.robot.drive_system.start_moving(50, 50)
 
