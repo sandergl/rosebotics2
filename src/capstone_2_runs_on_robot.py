@@ -63,19 +63,15 @@ class RemoteControlEtc(object):
                 if color == 2:
                     print('blue')
                     self.robot.drive_system.turn_degrees(90)
-                    self.robot.drive_system.start_moving(speed, speed)
                 if color == 3:
                     print('green')
                     self.robot.drive_system.turn_degrees(-90)
-                    self.robot.drive_system.start_moving(speed, speed)
                 if color == 4:
                     print('yellow')
                     self.robot.drive_system.turn_degrees(360)
-                    self.robot.drive_system.start_moving(speed, speed)
                 if color == 5:
                     print('red')
                     self.robot.drive_system.turn_degrees(180)
-                    self.robot.drive_system.start_moving(speed, speed)
                 if color == 6:
                     print('white')
                     self.robot.drive_system.stop_moving()
@@ -83,10 +79,8 @@ class RemoteControlEtc(object):
                     break
                 if color == 7:
                     print('brown')
+                self.robot.drive_system.start_moving(speed, speed)
             color_1 = self.robot.color_sensor.get_color()
-
-    def stop(self):
-        self.robot.drive_system.stop_moving()
 
 
 main()
